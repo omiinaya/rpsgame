@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+    <html>
+        <script>
+            var options = ["rock", "paper", "scissors"];
+            var userChoice = prompt("pick option");
+            var compChoice = options[Math.floor(Math.random()*options.length)];
+
+            console.log("User Choice:"+userChoice);
+            console.log("Computer Choice:"+compChoice);
+
+            if (userChoice==compChoice) {
+                alert("You tie!");
+            }
+            else if (((userChoice=="paper")&&(compChoice=="rock"))||((userChoice=="rock")&&(compChoice=="scissors"))||((userChoice=="scissors")&&(compChoice=="paper"))) {
+                alert("You win!");
+            }
+            else {
+                alert("You lose!");
+            }
+        </script>
+    </html>
