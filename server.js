@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
     } else {
 
         waitingPlayer = socket;
-        waitingPlayer.emit('message', 'Waiting for an opponent');
+        waitingPlayer.emit('message', 'Waiting for an opponent.');
     }
     //io relays message to everyone else in chat.
     socket.on('message', (text) => {
