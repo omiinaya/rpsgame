@@ -6,6 +6,8 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 
+const RPS = require('./game');
+
 //file serving
 const app = express();
 const clientPath = "${__dirname}/../client";
@@ -26,11 +28,7 @@ io.on('connection', (socket) => {
 
     if (waitingPlayer) {
         //start
-
-        [socket, waitingPlayer].forEach(s => {
-            s.emit('message', 'Match started!');
-        });
-
+        new RPS(waitingPlayer, socket);
         waitingPlayer = null;
 
     } else {
@@ -51,5 +49,5 @@ server.on('error', (err) => {
 
 //listener
 server.listen(port, () => {
-    console.log('Server started on '+port);
+    console.log('Server started on ' + port);
 });

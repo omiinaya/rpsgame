@@ -1,15 +1,18 @@
 class RPS {
 
     constructor(p1, p2) {
-        this.p1 = p1;
-        this.p2 = p2;
+        this.players = [p1, p2];
 
-        [p1, p2].forEach(s => {
+        this.sendToPlayers('Match Started!');
 
-            s.emit('message', 'Match started!');
+    }
+
+    sendToPlayers(msg) {
+        this.players.forEach((player) => {
+
+            player.emit('message', msg);
 
         });
-
     }
 
 }
