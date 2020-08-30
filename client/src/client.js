@@ -28,6 +28,7 @@ const onMessageSent = () => {
 
 }
 
+//using for each loop to create even listeners for our buttons.
 const addButtonListeners = () => {
     ['rock','paper','scissors'].forEach((id) => {
         const button = document.getElementById(id);
@@ -43,11 +44,12 @@ writeEvent('Welcome to RPS!')
 //pass message to write event when socket receives one.
 socket.on('message', writeEvent);
 
-//event listener for send key
+//event listener for send button.
 document.getElementById('submit')
     .addEventListener('click', function (e) {
         e.preventDefault;
         onMessageSent();
     });
 
+//initializing event listeners.
 addButtonListeners();

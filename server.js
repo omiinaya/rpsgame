@@ -5,7 +5,6 @@ const port = 3000;
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
-
 const RPS = require('./game');
 
 //file serving
@@ -26,13 +25,13 @@ io.on('connection', (socket) => {
     //alerts the user he is connected.
     socket.emit('message', 'Connection has been established.');
 
+    //checks if there is a waiting player.
     if (waitingPlayer) {
-        //start
         new RPS(waitingPlayer, socket);
         waitingPlayer = null;
 
     } else {
-
+        //if no waiting player, whoever connects first becomes the waiting player.
         waitingPlayer = socket;
         waitingPlayer.emit('message', 'Waiting for an opponent.');
     }

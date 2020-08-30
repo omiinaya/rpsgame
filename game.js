@@ -14,10 +14,12 @@ class RPS {
 
     }
 
+    //send message to a single player.
     sendToPlayer(i, msg) {
         this.players[i].emit('message', msg);
     }
 
+    //send message to all players.
     sendToPlayers(msg) {
         this.players.forEach((player) => {
 
@@ -26,17 +28,19 @@ class RPS {
         });
     }
 
+
     onTurn(i, turn) {
         this.turns[i] = turn;
         this.sendToPlayer(i, `You chose ${turn}`);
-
         this.gameOver();
     }
 
     gameOver() {
         const turns = this.turns;
+
+        //if both players have had their turn.
         if (turns[0] && turns[1]) {
-            this.sendToPlayer(0, 'Your oponent chose ' + this.turns[1]);
+            this.sendToPlayer(0, 'Your opponent chose ' + this.turns[1]);
             this.sendToPlayer(1, 'Your opponent chose ' + this.turns[0]);
             this.gameResult();
             this.sendToPlayers('Next Round!');
@@ -66,7 +70,7 @@ class RPS {
             this.sendToPlayer(1, 'You won!');
         }
 
-        //resetting turns back to null for continuous rounds.
+        //resetting back to null for continuous rounds.
         this.turns = [null, null];
     }
 
