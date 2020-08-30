@@ -28,6 +28,15 @@ const onMessageSent = () => {
 
 }
 
+const addButtonListeners = () => {
+    ['rock','paper','scissors'].forEach((id) => {
+        const button = document.getElementById(id);
+        button.addEventListener('click', () => {
+            socket.emit('turn', id);
+        })
+    })
+}
+
 //triggering a welcome message on start up.
 writeEvent('Welcome to RPS!')
 
@@ -40,3 +49,5 @@ document.getElementById('submit')
         e.preventDefault;
         onMessageSent();
     });
+
+addButtonListeners();
