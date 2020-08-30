@@ -29,6 +29,17 @@ class RPS {
     onTurn(i, turn) {
         this.turns[i] = turn;
         this.sendToPlayer(i, `You selected ${turn}`);
+
+        this.checkGameOver();
+    }
+
+    checkGameOver() {
+        const turns = this.turns;
+        if (turns[0] && turns[1]) {
+            this.sendToPlayers('Game over ' + turns.join(' : '));
+            this.turns = [null, null];
+            this.sendToPlayers('Next Round!');
+        }
     }
 
 }
